@@ -1,0 +1,26 @@
+package algorithm_study.frist_week;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class ModrichAlphabet {
+    // https://www.acmicpc.net/problem/2941
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(
+            new InputStreamReader(System.in)
+        );
+
+        String input = br.readLine();
+        
+        String[] candidates = {"c=", "c-", "dz=", "d-", 
+                "lj", "nj", "s=", "z="};
+        
+        for (String candidate: candidates) {
+            if (input.contains(candidate)) {
+                input = input.replace(candidate, " ");
+            }
+        }
+        System.out.println(input.length());
+    }
+}
