@@ -7,35 +7,32 @@ import java.util.Stack;
 
 public class StrangeProblem {
     // https://www.acmicpc.net/problem/4949
-    // Pass ㅠㅠㅠㅠ
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String page = br.readLine();
-        Stack<Character> stack = new Stack();
-        boolean isFailed = false;
-        for (int i = 0; i < page.length(); i++) {
-            char word = page.charAt(i);
-            System.out.println(word);
-            // if (word == '.') {
-            //     if(stack.isEmpty() && !isFailed) {
-            //         System.out.println("yes");
-            //     } else {
-            //         System.out.println("no");
-            //     }
-            //     stack.clear();
-            //     isFailed = false;
-            // } else if((word == '(' || word == '[') && !isFailed) {
-            //     stack.push(word);
-            // } else if((word == ')' || word == ']') && !isFailed) {
-            //     if (stack.isEmpty()) {
-            //         isFailed = true;
-            //     } else {
-            //         char pop = stack.pop();
-            //         if (pop != word) {
-            //             isFailed = true;
-            //         }
-            //     }
-            // }
+        while (true) {
+            String line = br.readLine();
+            if (line.equals(".")) break;
+            if (isValid(line)) {
+                System.out.println("yes");
+            } else {
+                System.out.println("no");
+            }
         }
+    }
+
+    public static boolean isValid(String line) {
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < line.length(); i++) {
+            char word = line.charAt(i);
+            if (word == '(' || word == '[') {
+                stack.add(word);
+            } else if(word == ')' || word == ']') {
+                if (stack.isEmpty()) return false;
+                char pop = stack.pop();
+                if (!((pop == '(' && word == ')') || (pop == '[' && word == ']'))) return false;
+            }
+        }
+        if (!stack.isEmpty()) return false;
+        return true;
     }
 }
