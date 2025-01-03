@@ -5,23 +5,24 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class DivideSum {
-    /*
-     *  245의 분해합은 256(=245+2+4+5)이 된다. 따라서 245는 256의 생성자
-     *  216은 225의 생성자
-     *  n의 생성자를 구하는 방법? 
-     *  생성자가 없는 경우(?)
-     */
-    
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(
             new InputStreamReader(System.in)
         );
         String n = br.readLine();
-        int sum = 0;
-        for (int i = 0; i < n.length(); i++) {
-            sum += Integer.parseInt(String.valueOf(n.charAt(i)));
+        int min = Integer.MAX_VALUE;
+        for (int i = 1; i < Integer.parseInt(n); i++) {
+            int sum = i;
+            String stringInt = String.valueOf(i);
+            for (int j = 0; j < stringInt.length(); j++) {
+                sum += Integer.parseInt(String.valueOf(stringInt.charAt(j)));
+            }
+            if (sum == Integer.parseInt(n)) min = Integer.min(i, min);
         }
-        sum += Integer.parseInt(n);
-        System.out.println(sum);
+        if (min == Integer.MAX_VALUE) {
+            System.out.println(0);
+        } else {
+            System.out.println(min);
+        }
     }
 }
