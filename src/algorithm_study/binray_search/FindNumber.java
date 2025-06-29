@@ -24,8 +24,6 @@ public class FindNumber {
         }
     }
 
-    
-
     private static int binarySearch(int[] arr, int target) {
         int start = 0;
         int end = arr.length - 1;

@@ -32,7 +32,6 @@ public class ConnectedNodes {
 
         for (int i = 1; i <= n; i++) {
             if (!visited[i]) {
-                // System.out.println(Arrays.toString(visited));
                 bfs(i);
                 connectedLines++;
             }
